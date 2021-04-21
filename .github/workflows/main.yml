@@ -1,0 +1,20 @@
+on: [push]
+
+jobs:
+  test_for_setup_vmaf_action:
+    runs-on: ubuntu-20.04
+    name: test for setup-vmaf action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup-vmaf action step
+        uses: wangwei1237/setup-vmaf@v1 # Uses an action in the root directory
+        id: setup-vmaf
+      # Use the output from the `hello` step
+      - name: Get the pkgconfig-path
+        run: | 
+          vmaf --version
+          echo "The libvmaf path: ${{ steps.setup-vmaf.outputs.libvmaf-path }}"
+          echo "The pkgconfig path: ${{ steps.setup-vmaf.outputs.pkgconfig-path }}"
+          ls -R ${{ steps.setup-vmaf.outputs.libvmaf-path }}
+          
