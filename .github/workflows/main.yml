@@ -10,6 +10,8 @@ jobs:
       - name: Setup-vmaf action step
         uses: wangwei1237/setup-vmaf@v1 # Uses an action in the root directory
         id: setup-vmaf
+        with: 
+          version: v2.1.0
       # Use the output from the `hello` step
       - name: Get the pkgconfig-path
         run: | 
